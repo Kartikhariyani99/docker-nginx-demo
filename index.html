@@ -1,1 +1,457 @@
 #html file
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TARASV DRINK — Real. Bold. Yours.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --yellow:#FFD600; --red:#B01B1B; --black:#111; --white:#FFFBF0; --gold:#F5A623;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:'Nunito',sans-serif;overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.85rem 3.5rem;background:rgba(17,17,17,.93);backdrop-filter:blur(16px);border-bottom:2.5px solid var(--yellow)}
+    .nav-logo img{height:48px;object-fit:contain}
+    nav ul{list-style:none;display:flex;gap:2.5rem}
+    nav ul a{text-decoration:none;color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.14em;transition:color .2s}
+    nav ul a:hover{color:var(--yellow)}
+    .nav-btn{background:var(--yellow);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;border:none;padding:.6rem 1.8rem;border-radius:.25rem;cursor:pointer;transition:background .2s,transform .2s}
+    .nav-btn:hover{background:var(--red);color:var(--white);transform:scale(1.05)}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;background:radial-gradient(ellipse 65% 65% at 78% 48%,rgba(176,27,27,.32) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 18% 80%,rgba(255,214,0,.13) 0%,transparent 58%),var(--black);display:flex;align-items:center;padding:0 3.5rem;padding-top:90px;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:900px;background:repeating-linear-gradient(45deg,rgba(255,214,0,.04) 0,rgba(255,214,0,.04) 2px,transparent 2px,transparent 18px);pointer-events:none}
+
+    .hero-content{flex:1;z-index:2;max-width:560px}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--yellow);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.18em;padding:.35rem 1rem;border-radius:.25rem;margin-bottom:1.8rem;animation:popIn .5s ease both}
+    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8.5vw,8rem);line-height:.92;letter-spacing:.03em;animation:slideUp .6s .1s ease both}
+    .line-red{color:var(--red);display:block}
+    .line-yellow{color:var(--yellow);display:block;text-shadow:0 0 40px rgba(255,214,0,.4)}
+    .line-white{color:var(--white);display:block}
+    .hero-tagline{margin-top:1.4rem;font-size:1.05rem;font-weight:600;line-height:1.75;color:rgba(255,251,240,.6);animation:slideUp .6s .22s ease both}
+    .hero-tagline strong{color:var(--yellow)}
+    .hero-actions{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap;animation:slideUp .6s .32s ease both}
+    .btn-main{background:var(--red);color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;border:none;padding:.9rem 2.5rem;border-radius:.25rem;cursor:pointer;transition:all .25s}
+    .btn-main:hover{background:var(--yellow);color:var(--black);transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,214,0,.3)}
+    .btn-outline{background:transparent;color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;border:2px solid rgba(255,251,240,.3);padding:.9rem 2.2rem;border-radius:.25rem;cursor:pointer;transition:all .25s}
+    .btn-outline:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    /* ── GLASS BOTTLE ── */
+    .hero-visual{flex:1;display:flex;justify-content:center;align-items:center;position:relative;z-index:2;animation:floatBottle 5s ease-in-out infinite}
+    @keyframes floatBottle{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+
+    .bottle-scene{position:relative;display:flex;justify-content:center;align-items:center;width:320px;height:520px}
+    .bottle-glow{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,0,.22) 0%,rgba(176,27,27,.15) 40%,transparent 70%);filter:blur(40px);bottom:40px}
+    .bottle-shadow{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:120px;height:20px;background:rgba(0,0,0,.6);border-radius:50%;filter:blur(12px)}
+
+    /* floating tags */
+    .bubble{position:absolute;background:var(--yellow);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:2rem;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:3}
+    .bubble-1{top:10%;left:0;animation:bob 4s 1s ease-in-out infinite}
+    .bubble-2{bottom:20%;right:0;animation:bob 4s 2s ease-in-out infinite}
+    .bubble-3{top:52%;left:2%;background:var(--red);color:var(--white);animation:bob 4s .5s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    /* drip drops */
+    .drip{position:absolute;width:5px;height:9px;background:rgba(180,230,255,.7);border-radius:50% 50% 50% 50%/35% 35% 65% 65%;z-index:4}
+    .drip-1{top:28%;left:46%;animation:drip 3.5s 0.8s ease-in infinite}
+    .drip-2{top:30%;left:54%;animation:drip 3.5s 2s ease-in infinite}
+    .drip-3{top:26%;left:50%;animation:drip 3.5s 3.2s ease-in infinite}
+    @keyframes drip{0%{opacity:.8;transform:translateY(0)}70%{opacity:.3;transform:translateY(55px)}100%{opacity:0;transform:translateY(65px)}}
+
+    @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+
+    /* ── TICKER ── */
+    .ticker-wrap{background:var(--yellow);padding:.7rem 0;overflow:hidden;border-top:3px solid var(--red);border-bottom:3px solid var(--red)}
+    .ticker{display:flex;gap:3rem;animation:ticker 20s linear infinite;width:max-content}
+    .ticker span{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.18em;color:var(--black);white-space:nowrap}
+    .ticker span.dot{color:var(--red);font-size:1.4rem}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ── FLAVOURS ── */
+    .flavours{padding:8rem 3.5rem;position:relative}
+    .flavours::before{content:'FLAVOURS';position:absolute;top:3rem;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:14vw;color:rgba(255,214,0,.04);white-space:nowrap;pointer-events:none}
+    .sec-eyebrow{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:.8rem;letter-spacing:.25em;color:var(--yellow);margin-bottom:.6rem}
+    .sec-title{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);letter-spacing:.05em;color:var(--white);margin-bottom:3.5rem}
+    .sec-title em{color:var(--red);font-style:normal}
+
+    .flavour-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;max-width:1300px;margin:0 auto}
+    .flavour-card{border-radius:1.2rem;padding:2rem 1.4rem 1.6rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+    .flavour-card::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,var(--fc,#fff) 0%,transparent 55%);opacity:.07;transition:opacity .3s}
+    .flavour-card:hover{transform:translateY(-10px) scale(1.02);border-color:var(--fc,#fff);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+    .flavour-card:hover::before{opacity:.16}
+    .fc-icon{font-size:3.2rem;margin-bottom:1rem;display:block}
+    .fc-name{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.08em;color:var(--white);margin-bottom:.5rem}
+    .fc-desc{font-size:.8rem;line-height:1.65;color:rgba(255,251,240,.55)}
+    .fc-tag{display:inline-block;margin-top:1rem;font-family:'Bebas Neue',sans-serif;font-size:.7rem;letter-spacing:.14em;padding:.25rem .75rem;border-radius:1rem}
+
+    /* ── BRAND ── */
+    .brand-strip{background:var(--red);padding:5rem 3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden}
+    .brand-strip::after{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:rgba(255,214,0,.1);pointer-events:none}
+    .brand-left{position:relative;z-index:2}
+    .brand-left .logo-big img{width:min(340px,80%)}
+    .brand-left p{margin-top:1.5rem;font-size:1rem;line-height:1.8;color:rgba(255,251,240,.85);max-width:400px}
+    .brand-right{position:relative;z-index:2}
+    .brand-right h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,4rem);letter-spacing:.06em;color:var(--yellow);line-height:.95;margin-bottom:1.5rem}
+    .brand-right h2 span{color:var(--white)}
+    .perks{list-style:none;display:flex;flex-direction:column;gap:.9rem}
+    .perks li{display:flex;align-items:center;gap:.8rem;font-size:.95rem;color:rgba(255,251,240,.85)}
+    .perks li::before{content:'✦';color:var(--yellow);font-size:.9rem;flex-shrink:0}
+
+    /* ── STATS ── */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--yellow);border-top:3px solid var(--red);border-bottom:3px solid var(--red)}
+    .stat{padding:2.8rem 1rem;text-align:center;border-right:2px solid rgba(176,27,27,.25)}
+    .stat:last-child{border-right:none}
+    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--red);letter-spacing:.04em}
+    .stat-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--black);margin-top:.2rem;font-weight:700}
+
+    /* ── CTA ── */
+    .cta-section{padding:9rem 3.5rem;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(176,27,27,.2) 0%,transparent 70%),var(--black);text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{content:'TARASV';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:20vw;color:rgba(255,214,0,.03);white-space:nowrap;pointer-events:none}
+    .cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,7rem);letter-spacing:.04em;color:var(--white);line-height:.9;margin-bottom:1.5rem;position:relative;z-index:2}
+    .cta-section h2 span{color:var(--yellow)}
+    .cta-section p{color:rgba(255,251,240,.55);font-size:1rem;margin-bottom:2.5rem;position:relative;z-index:2}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;position:relative;z-index:2}
+
+    /* ── FOOTER ── */
+    footer{background:#0A0A0A;padding:2rem 3.5rem;display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--yellow);flex-wrap:wrap;gap:1rem}
+    footer img{height:40px}
+    footer small{color:rgba(255,251,240,.3);font-size:.78rem}
+    .footer-links{display:flex;gap:1.8rem}
+    .footer-links a{color:rgba(255,251,240,.4);font-size:.8rem;text-decoration:none;letter-spacing:.08em;transition:color .2s}
+    .footer-links a:hover{color:var(--yellow)}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.vis{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      .flavour-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{flex-direction:column;text-align:center;padding-top:110px}
+      .hero-visual{margin-top:3rem}
+      .brand-strip{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      nav ul{display:none}
+    }
+    @media(max-width:500px){.flavour-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="1778048459114_image.png" alt="Tarasv"/></div>
+  <ul>
+    <li><a href="#flavours">Flavours</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+  <button class="nav-btn">Order Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🔥 India's Boldest Cold Drink</div>
+    <h1 class="hero-title">
+      <span class="line-white">REAL</span>
+      <span class="line-red">TASTE.</span>
+      <span class="line-yellow">REAL BOLD.</span>
+    </h1>
+    <p class="hero-tagline">
+      Five fierce flavours. Zero compromise.<br>
+      <strong>Cola · Jeera · Lemon · Orange · Special</strong>
+    </p>
+    <div class="hero-actions">
+      <button class="btn-main" onclick="document.getElementById('flavours').scrollIntoView({behavior:'smooth'})">Explore Flavours</button>
+      <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Our Story</button>
+    </div>
+  </div>
+
+  <!-- GLASS BOTTLE VISUAL -->
+  <div class="hero-visual">
+    <div class="bottle-scene">
+      <div class="bottle-glow"></div>
+      <div class="bottle-shadow"></div>
+
+      <div class="bubble bubble-1">💥 5 Flavours</div>
+      <div class="bubble bubble-2">🧊 Ice Cold</div>
+      <div class="bubble bubble-3">✦ Bold Taste</div>
+
+      <!-- water drips -->
+      <div class="drip drip-1"></div>
+      <div class="drip drip-2"></div>
+      <div class="drip drip-3"></div>
+
+      <!-- ═══ GLASS BOTTLE SVG ═══ -->
+      <svg width="200" height="480" viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 30px 70px rgba(176,27,27,.55)) drop-shadow(0 0 30px rgba(255,214,0,.2))">
+        <defs>
+          <!-- Glass body gradient - amber/brown cola glass -->
+          <linearGradient id="glassBody" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#3B1200" stop-opacity=".95"/>
+            <stop offset="18%"  stop-color="#7A2800"/>
+            <stop offset="35%"  stop-color="#C84000"/>
+            <stop offset="50%"  stop-color="#E85000" stop-opacity=".9"/>
+            <stop offset="65%"  stop-color="#C84000"/>
+            <stop offset="82%"  stop-color="#7A2800"/>
+            <stop offset="100%" stop-color="#3B1200" stop-opacity=".95"/>
+          </linearGradient>
+          <!-- glass neck -->
+          <linearGradient id="glassNeck" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#2A0E00" stop-opacity=".9"/>
+            <stop offset="30%"  stop-color="#8B3A00"/>
+            <stop offset="55%"  stop-color="#CC5500" stop-opacity=".85"/>
+            <stop offset="80%"  stop-color="#8B3A00"/>
+            <stop offset="100%" stop-color="#2A0E00" stop-opacity=".9"/>
+          </linearGradient>
+          <!-- primary glass shine (left) -->
+          <linearGradient id="shine1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"  stop-color="white" stop-opacity="0"/>
+            <stop offset="20%" stop-color="white" stop-opacity=".38"/>
+            <stop offset="32%" stop-color="white" stop-opacity=".12"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+          </linearGradient>
+          <!-- secondary right edge shine -->
+          <linearGradient id="shine2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="white" stop-opacity="0"/>
+            <stop offset="72%"  stop-color="white" stop-opacity="0"/>
+            <stop offset="85%"  stop-color="white" stop-opacity=".22"/>
+            <stop offset="95%"  stop-color="white" stop-opacity=".35"/>
+            <stop offset="100%" stop-color="white" stop-opacity=".1"/>
+          </linearGradient>
+          <!-- liquid fill gradient -->
+          <linearGradient id="liquid" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#8B0000" stop-opacity=".8"/>
+            <stop offset="40%"  stop-color="#CC1100" stop-opacity=".75"/>
+            <stop offset="60%"  stop-color="#FF2200" stop-opacity=".65"/>
+            <stop offset="100%" stop-color="#8B0000" stop-opacity=".8"/>
+          </linearGradient>
+          <!-- label gradient yellow -->
+          <linearGradient id="labelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#FFE033"/>
+            <stop offset="50%"  stop-color="#FFD600"/>
+            <stop offset="100%" stop-color="#D4A800"/>
+          </linearGradient>
+          <!-- bottom thickness -->
+          <linearGradient id="bottomGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#CC4400" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#1A0800" stop-opacity=".9"/>
+          </linearGradient>
+          <!-- cap -->
+          <linearGradient id="capGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#FFDD00"/>
+            <stop offset="40%"  stop-color="#CC9900"/>
+            <stop offset="100%" stop-color="#886600"/>
+          </linearGradient>
+          <!-- glass clip -->
+          <clipPath id="glassClip">
+            <path d="M72,110 L68,90 Q66,72 76,62 L80,50 Q85,35 100,32 Q115,35 120,50 L124,62 Q134,72 132,90 L128,110 Q118,125 118,145 L118,395 Q118,415 100,420 Q82,415 82,395 L82,145 Q82,125 72,110 Z"/>
+          </clipPath>
+          <!-- bubble clip inside glass -->
+          <clipPath id="liquidClip">
+            <rect x="82" y="160" width="36" height="230"/>
+          </clipPath>
+        </defs>
+
+        <!-- ── BOTTLE BODY SILHOUETTE (fill first) ── -->
+        <!-- Shoulder + body outer shape -->
+        <path d="M72,110 Q60,125 58,145 L55,395 Q54,430 100,435 Q146,430 145,395 L142,145 Q140,125 128,110 L124,62 Q134,72 132,90 L128,110"
+              fill="url(#glassBody)" opacity=".05"/>
+
+        <!-- ══ GLASS BODY - main form ══ -->
+        <!-- Body -->
+        <path d="M60,142 L58,390 Q57,432 100,438 Q143,432 142,390 L140,142 Q138,122 128,108 L128,108 Q118,120 118,142 L118,390 Q118,418 100,422 Q82,418 82,390 L82,142 Q82,120 72,108 Q62,122 60,142 Z"
+              fill="url(#glassBody)"/>
+
+        <!-- liquid inside (cola red) -->
+        <path d="M83,165 L83,388 Q83,412 100,416 Q117,412 117,388 L117,165 Z"
+              fill="url(#liquid)"/>
+
+        <!-- bubbles in liquid -->
+        <g clip-path="url(#liquidClip)">
+          <circle cx="90"  cy="370" r="2.5" fill="rgba(255,255,255,.35)"><animate attributeName="cy" values="370;150" dur="3.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0" dur="3.2s" repeatCount="indefinite"/></circle>
+          <circle cx="100" cy="390" r="2"   fill="rgba(255,255,255,.3)"><animate attributeName="cy" values="390;170" dur="2.6s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0" dur="2.6s" begin="0.8s" repeatCount="indefinite"/></circle>
+          <circle cx="108" cy="380" r="1.8" fill="rgba(255,255,255,.28)"><animate attributeName="cy" values="380;200" dur="3.8s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".28;0" dur="3.8s" begin="1.5s" repeatCount="indefinite"/></circle>
+          <circle cx="87"  cy="350" r="1.5" fill="rgba(255,255,255,.22)"><animate attributeName="cy" values="350;180" dur="4s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".22;0" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
+          <circle cx="113" cy="360" r="2"   fill="rgba(255,255,255,.28)"><animate attributeName="cy" values="360;220" dur="3s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".28;0" dur="3s" begin="2s" repeatCount="indefinite"/></circle>
+        </g>
+
+        <!-- glass shoulder -->
+        <path d="M72,108 Q62,122 60,142 L82,142 Q82,122 100,118 Q118,122 118,142 L140,142 Q138,122 128,108 Z"
+              fill="url(#glassBody)"/>
+
+        <!-- neck -->
+        <path d="M80,50 L80,108 Q82,112 100,114 Q118,112 120,108 L120,50 Z"
+              fill="url(#glassNeck)"/>
+
+        <!-- neck ring decorative grooves -->
+        <ellipse cx="100" cy="96" rx="20" ry="4" fill="none" stroke="rgba(255,150,0,.5)" stroke-width="2.5"/>
+        <ellipse cx="100" cy="88" rx="19" ry="3.5" fill="none" stroke="rgba(255,150,0,.35)" stroke-width="1.5"/>
+        <ellipse cx="100" cy="80" rx="18" ry="3" fill="none" stroke="rgba(255,150,0,.25)" stroke-width="1"/>
+
+        <!-- glass neck liquid fill -->
+        <path d="M82,52 L82,108 Q100,114 118,108 L118,52 Z" fill="url(#liquid)" opacity=".4"/>
+
+        <!-- ── LABEL ── -->
+        <rect x="62" y="178" width="76" height="120" rx="6" fill="url(#labelGrad)"/>
+        <!-- label border red -->
+        <rect x="63" y="179" width="74" height="118" rx="5.5" fill="none" stroke="#B01B1B" stroke-width="2.5"/>
+        <!-- inner label frame lines -->
+        <rect x="67" y="183" width="66" height="110" rx="3" fill="none" stroke="rgba(176,27,27,.4)" stroke-width="1"/>
+
+        <!-- brand text on label -->
+        <text x="100" y="225" font-family="'Bebas Neue',Impact,sans-serif" font-size="26" fill="#B01B1B" text-anchor="middle" letter-spacing="2">TARASV</text>
+
+        <!-- DRINK badge pill -->
+        <rect x="74" y="233" width="52" height="18" rx="9" fill="#B01B1B"/>
+        <text x="100" y="245.5" font-family="'Bebas Neue',Impact,sans-serif" font-size="10" fill="#FFD600" text-anchor="middle" letter-spacing="2.5">DRINK</text>
+
+        <!-- decorative dashes -->
+        <line x1="68" y1="262" x2="132" y2="262" stroke="#B01B1B" stroke-width="1" stroke-dasharray="3,2.5" opacity=".5"/>
+        <text x="100" y="278" font-family="sans-serif" font-size="7" fill="#7a0000" text-anchor="middle" letter-spacing="1" opacity=".8">COLA · JEERA · LEMON</text>
+        <text x="100" y="289" font-family="sans-serif" font-size="7" fill="#7a0000" text-anchor="middle" letter-spacing="1" opacity=".8">ORANGE · SPECIAL</text>
+
+        <!-- ── GLASS SHINES (on top of everything) ── -->
+        <!-- left main shine -->
+        <path d="M60,142 L58,390 Q57,432 100,438 Q143,432 142,390 L140,142 Q138,122 128,108 L120,50 L80,50 L72,108 Q62,122 60,142 Z"
+              fill="url(#shine1)" opacity=".9"/>
+        <!-- right edge shine -->
+        <path d="M60,142 L58,390 Q57,432 100,438 Q143,432 142,390 L140,142 Q138,122 128,108 L120,50 L80,50 L72,108 Q62,122 60,142 Z"
+              fill="url(#shine2)" opacity=".9"/>
+
+        <!-- specular highlight spot on shoulder -->
+        <ellipse cx="76" cy="132" rx="7" ry="12" fill="white" opacity=".18" transform="rotate(-20,76,132)"/>
+        <ellipse cx="74" cy="130" rx="3" ry="6" fill="white" opacity=".28" transform="rotate(-20,74,130)"/>
+
+        <!-- tiny specular on neck -->
+        <ellipse cx="84" cy="68" rx="3" ry="8" fill="white" opacity=".22" transform="rotate(-10,84,68)"/>
+
+        <!-- bottom glass thickness -->
+        <ellipse cx="100" cy="432" rx="42" ry="8" fill="url(#bottomGlass)"/>
+        <ellipse cx="100" cy="428" rx="40" ry="6" fill="#3B1200" opacity=".7"/>
+
+        <!-- ── CROWN CAP ── -->
+        <!-- cap body -->
+        <ellipse cx="100" cy="46" rx="22" ry="8" fill="url(#capGrad)"/>
+        <rect x="78" y="38" width="44" height="10" rx="2" fill="url(#capGrad)"/>
+        <!-- crimped edges (crown cap teeth) -->
+        <path d="M78,42 L75,36 L79,40 L80,34 L83,40 L84,33 L87,40 L89,33 L92,40 L94,33 L97,40 L100,33 L103,40 L106,33 L108,40 L111,33 L113,40 L116,40 L117,34 L120,40 L121,36 L122,42"
+              stroke="#886600" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- cap shine -->
+        <ellipse cx="93" cy="38" rx="8" ry="3" fill="white" opacity=".25"/>
+
+        <!-- mouth opening ring -->
+        <ellipse cx="100" cy="34" rx="14" ry="4" fill="#1A0800" opacity=".8"/>
+        <ellipse cx="100" cy="33" rx="12" ry="3" fill="#0D0400"/>
+
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>COLA</span><span class="dot">✦</span><span>JEERA MASALA</span><span class="dot">✦</span><span>LEMON FRESH</span><span class="dot">✦</span><span>ORANGE BLAST</span><span class="dot">✦</span><span>TARASV SPECIAL</span><span class="dot">✦</span><span>INDIA KA APNA DRINK</span><span class="dot">✦</span>
+    <span>COLA</span><span class="dot">✦</span><span>JEERA MASALA</span><span class="dot">✦</span><span>LEMON FRESH</span><span class="dot">✦</span><span>ORANGE BLAST</span><span class="dot">✦</span><span>TARASV SPECIAL</span><span class="dot">✦</span><span>INDIA KA APNA DRINK</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- FLAVOURS -->
+<section class="flavours" id="flavours">
+  <div class="sec-eyebrow reveal">Choose Your Flavour</div>
+  <h2 class="sec-title reveal">5 FLAVOURS. <em>ONE BRAND.</em></h2>
+  <div class="flavour-grid">
+    <div class="flavour-card reveal" style="--fc:#3B1200">
+      <span class="fc-icon">🥤</span>
+      <div class="fc-name">COLA</div>
+      <p class="fc-desc">Deep dark cola with that classic fizz-hit. The crowd pleaser that never gets old.</p>
+      <span class="fc-tag" style="background:#3B1200;color:#FFD600;border:1px solid #FFD600">Classic</span>
+    </div>
+    <div class="flavour-card reveal" style="--fc:#C8860A">
+      <span class="fc-icon">🌿</span>
+      <div class="fc-name">JEERA</div>
+      <p class="fc-desc">Cumin-spiced, tangy, totally desi. Tarasv Jeera is summer in a bottle.</p>
+      <span class="fc-tag" style="background:#C8860A;color:#111">Desi Hit</span>
+    </div>
+    <div class="flavour-card reveal" style="--fc:#C8D400">
+      <span class="fc-icon">🍋</span>
+      <div class="fc-name">LEMON</div>
+      <p class="fc-desc">Sharp citrus burst with a sparkle of fizz. Cool, clean, and crazy refreshing.</p>
+      <span class="fc-tag" style="background:#C8D400;color:#111">Refreshing</span>
+    </div>
+    <div class="flavour-card reveal" style="--fc:#E85C00">
+      <span class="fc-icon">🍊</span>
+      <div class="fc-name">ORANGE</div>
+      <p class="fc-desc">Sun-bright orange punch loaded with tropical sweetness and zingy fizz.</p>
+      <span class="fc-tag" style="background:#E85C00;color:#fff">Tropical</span>
+    </div>
+    <div class="flavour-card reveal" style="--fc:#6B0066">
+      <span class="fc-icon">⭐</span>
+      <div class="fc-name">SPECIAL</div>
+      <p class="fc-desc">A secret blend of fruits and spices. Only Tarasv knows — extraordinary.</p>
+      <span class="fc-tag" style="background:#6B0066;color:#FFD600;border:1px solid #FFD600">Secret</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat"><div class="stat-num">5</div><div class="stat-label">Bold Flavours</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Real Taste</div></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Artificial Colour</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Refreshment</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="brand-strip" id="about">
+  <div class="brand-left reveal">
+    <div class="logo-big"><img src="1778048459114_image.png" alt="Tarasv Drink Logo"/></div>
+    <p>Tarasv Drink was born in the heart of India — crafted for those who want a bold, honest, and delicious cold drink. No pretense. No fluff. Just great taste and real fizz that hits different.</p>
+    <p style="margin-top:.8rem;color:rgba(255,251,240,.65);font-size:.88rem;">Made with quality ingredients · Served ice cold · Loved across India</p>
+  </div>
+  <div class="brand-right reveal">
+    <h2>WHY CHOOSE<br><span>TARASV?</span></h2>
+    <ul class="perks">
+      <li>Five distinct flavours for every mood and occasion</li>
+      <li>Premium glass bottle — keeps it colder, longer</li>
+      <li>Bold taste that stands apart from ordinary drinks</li>
+      <li>Perfectly carbonated for maximum refreshment</li>
+      <li>India's own cold drink — desi pride in every sip</li>
+      <li>Available everywhere — shops, stalls, and online</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="order">
+  <h2>TIME TO <span>TASTE</span><br>THE BOLD</h2>
+  <p>Order Tarasv Drink today — all five flavours, delivered to your door.</p>
+  <div class="cta-btns">
+    <button class="btn-main" style="font-size:1.15rem;padding:1rem 3rem">Order Now</button>
+    <button class="btn-outline" style="font-size:1.15rem;padding:1rem 2.5rem">Find a Store</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="1778048459114_image.png" alt="Tarasv Drink"/>
+  <div class="footer-links">
+    <a href="#">Home</a><a href="#flavours">Flavours</a><a href="#about">About</a><a href="#order">Contact</a>
+  </div>
+  <small>© 2026 Tarasv Drink. All rights reserved.</small>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
